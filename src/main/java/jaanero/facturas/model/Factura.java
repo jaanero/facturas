@@ -2,6 +2,6 @@ package jaanero.facturas.model;
 
 public class Factura {
 
-	Cliente cliente;
+	Client client;
 	float base;
 }
