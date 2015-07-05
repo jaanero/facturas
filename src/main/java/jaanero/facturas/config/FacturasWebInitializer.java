@@ -10,11 +10,11 @@ public class FacturasWebInitializer extends AbstractAnnotationConfigDispatcherSe
 
 	@Override
 	protected Class<?>[] getServletConfigClasses() {
-		return new Class<?>[] { WebConfig.class };	}
+		return new Class<?>[] {MyBatisConfig.class, WebConfig.class  };	}
 
 	@Override
 	protected String[] getServletMappings() {
-		return new String[] { "/" };
+		return new String[] { "/" }; 
 	}
 
 }

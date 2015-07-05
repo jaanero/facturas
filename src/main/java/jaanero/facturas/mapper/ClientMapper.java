@@ -1,5 +1,6 @@
 package jaanero.facturas.mapper;
 
+import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Result;
 import org.apache.ibatis.annotations.Select;
@@ -13,5 +14,8 @@ public interface ClientMapper {
 	            @Result(property="id", column="CLIENT_KEY"),
 	            @Result(property="name", column="CLIENT_NAME")})
 	  Client getClient(@Param("clientId") String clientId);
+	  
+	  @Insert("INSERT INTO CLIENT (CLIENT_KEY, CLIENT_NAME) VALUES (#{id},#{name})")
+	  void insertClient(Client client);
 
 }

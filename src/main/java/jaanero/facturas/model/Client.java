@@ -26,14 +26,20 @@ public class Client {
 	public static class ClientBuilder {
 
 		private String id;
+		private String name;
 
 		public ClientBuilder setId(String id) {
 			this.id = id;
 			return this;
 		}
+		public ClientBuilder setName(String name) {
+			this.name = name;
+			return this;
+		}
 		public Client build() {
 			Client client = new Client();
 			client.setId(this.id);
+			client.setName(this.name);
 			return client;
 		}
 	}

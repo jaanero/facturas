@@ -8,25 +8,22 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import jaanero.facturas.service.ClientService;
 
-
 @Controller
 public class ClientController {
 	
 	@Autowired
-	ClientService clientService;
+	private ClientService clientService;
+	
+	public ClientController(){}
 
+	public ClientController(ClientService clientService){
+		this.clientService = clientService;
+	}
 
-	@RequestMapping(value="/index", method=RequestMethod.GET)
+	@RequestMapping(value="/", method=RequestMethod.GET)
 	public String home(Model model) {
 		model.addAttribute("client",clientService.findClient("1"));
 		return "index";
 	}
 	
-	public ClientService getClientService() {
-		return clientService;
-	}
-
-	public void setClientService(ClientService clientService) {
-		this.clientService = clientService;
-	}
 }
