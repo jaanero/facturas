@@ -8,15 +8,15 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.support.AnnotationConfigContextLoader;
 
-import jaanero.facturas.config.MyBatisConfigTest;
+import jaanero.facturas.config.DataSourceConfig;
+import jaanero.facturas.config.MyBatisConfig;
 import jaanero.facturas.model.Client;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(classes=MyBatisConfigTest.class, loader=AnnotationConfigContextLoader.class)
+@ContextConfiguration(classes={DataSourceConfig.class, MyBatisConfig.class}, loader=AnnotationConfigContextLoader.class)
 public class ClientMapperTest {
-	private static final String CLIENT_ID = "1234";
 	private static final String CLIENT_NAME = "Test Name";
-	private static final Client CLIENT = Client.aClient().setId(CLIENT_ID).setName(CLIENT_NAME).build();
+	private static final Client CLIENT = Client.aClient(CLIENT_NAME).build();
 
 	@Autowired
 	private ClientMapper clientMapper;
@@ -29,8 +29,8 @@ public class ClientMapperTest {
 	@Test 
 	public void should_insert_a_client_and_find_it(){
 		clientMapper.insertClient(CLIENT);
-		Client sameClient = clientMapper.getClient(CLIENT.getId());
-		Assert.assertEquals(sameClient.getId(), CLIENT.getId());
+		Client sameClient = clientMapper.findByName(CLIENT.getName());
+		Assert.assertEquals(sameClient.getName(), CLIENT.getName());
 	}
 
 }

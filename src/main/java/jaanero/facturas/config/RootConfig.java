@@ -8,6 +8,6 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 @Configuration
 @ComponentScan(basePackages = { "jaanero.facturas" }, excludeFilters = {
-		@Filter(type = FilterType.ANNOTATION, value = EnableWebMvc.class) })
+      @Filter(type = FilterType.ANNOTATION, value = EnableWebMvc.class) })
 public class RootConfig {
 }

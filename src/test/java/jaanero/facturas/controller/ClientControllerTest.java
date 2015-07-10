@@ -1,5 +1,8 @@
 package jaanero.facturas.controller;
 
+import java.util.Collections;
+
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;
@@ -8,7 +11,7 @@ import org.springframework.ui.Model;
 
 import jaanero.facturas.model.ClientTest;
 import jaanero.facturas.service.ClientService;
-import junit.framework.Assert;
+
 
 public class ClientControllerTest {
 	
@@ -40,12 +43,14 @@ public class ClientControllerTest {
 	
 	@Test
 	public void should_run_home_and_set_client_on_model(){
-		Mockito.when(clientService.findClient(ClientTest.CLIENT_ID)).thenReturn(ClientTest.CLIENT);
+		Mockito.when(clientService.findByName(ClientTest.CLIENT.getName())).thenReturn(ClientTest.CLIENT);
+		Mockito.when(clientService.findAll()).thenReturn(ClientTest.ALL_CLIENTS);
 
 		ClientController clientController = new ClientController(clientService);
 		clientController.home(model);
 		
 		Assert.assertTrue(model.containsAttribute("client"));
+		Assert.assertTrue(model.containsAttribute("clients"));
 	}
 
 }

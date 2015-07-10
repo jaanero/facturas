@@ -1,11 +1,14 @@
 package jaanero.facturas.service;
 
+import java.util.List;
+
 import jaanero.facturas.model.Client;
 
 public interface ClientService {
 
-	void insertClient(Client client);
+   public void insertClient(Client client);
 
-	Client findClient(String clientId);
+   public Client findByName(String clientName);
 
+   public List<Client> findAll();
 }

@@ -10,20 +10,22 @@ import jaanero.facturas.service.ClientService;
 
 @Controller
 public class ClientController {
-	
-	@Autowired
-	private ClientService clientService;
-	
-	public ClientController(){}
 
-	public ClientController(ClientService clientService){
-		this.clientService = clientService;
-	}
+   @Autowired
+   private ClientService clientService;
 
-	@RequestMapping(value="/", method=RequestMethod.GET)
-	public String home(Model model) {
-		model.addAttribute("client",clientService.findClient("1"));
-		return "index";
-	}
-	
+   public ClientController() {
+   }
+
+   public ClientController(ClientService clientService) {
+      this.clientService = clientService;
+   }
+
+   @RequestMapping(value = "/", method = RequestMethod.GET)
+   public String home(Model model) {
+      model.addAttribute("client", clientService.findByName("Javier Garcia"));
+      model.addAttribute("clients", clientService.findAll());
+      return "index";
+   }
+
 }
